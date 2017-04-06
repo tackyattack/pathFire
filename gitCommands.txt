@@ -1,0 +1,2 @@
+adding all files: git add .
+pushing: git push -u origin master

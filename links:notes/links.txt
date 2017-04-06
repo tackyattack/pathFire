@@ -1,0 +1,8 @@
+How to sample multiple lights: http://www.cs.virginia.edu/~jdl/bib/globillum/mis/shirley96.pdf
+
+Good explanation of MIS:
+http://www.cs.uu.nl/docs/vakken/magr/2015-2016/slides/lecture%2008%20-%20variance%20reduction.pdf
+Basically a combination of sampling BRDF and next event sampling. MIS is the choice in production renderers, so it's a good technique to go with. 
+
+How to layer materials:
+https://www.solidangle.com/research/physically_based_shader_design_in_arnold.pdf

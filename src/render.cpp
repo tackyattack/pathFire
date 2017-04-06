@@ -94,10 +94,10 @@ vec3d radiance(const ray &r, int depth, unsigned short *Xi, bool E=true){
         return vec3d(0,0,0);
     }
     
-    Tri3D &triangle = *ptr_to_triangle; // create a reference to the triangle that was intersected
+    //Tri3D &triangle = *ptr_to_triangle; // create a reference to the triangle that was intersected
     
     float light_em = 0.75;
-    if(triangle.tag == LIGHT_TAG)
+    if(ptr_to_triangle->tag == LIGHT_TAG)
     { // hit a light directly so make it visible
         if(E)
         {
@@ -121,7 +121,7 @@ vec3d radiance(const ray &r, int depth, unsigned short *Xi, bool E=true){
 
     //----triangle version----
     vec3d n;
-    vec3d nv3 = (triangle.m_b - triangle.m_a).cross(triangle.m_c - triangle.m_a);
+    vec3d nv3 = (ptr_to_triangle->m_b - ptr_to_triangle->m_a).cross(ptr_to_triangle->m_c - ptr_to_triangle->m_a);
     n = nv3;
     n.norm();
 
@@ -256,9 +256,9 @@ vec3d radiance(const ray &r, int depth, unsigned short *Xi, bool E=true){
 
         Tri3D *ptr_to_tri_hit; // points to the triangle that was hit
         bool hit = tree->newTest(ray(x, dd), t1, ptr_to_tri_hit); // test the ray
-        Tri3D &triHit = *ptr_to_tri_hit; // create a reference to the triangle that was hit
+        //Tri3D &triHit = *ptr_to_tri_hit; // create a reference to the triangle that was hit
 
-        if(triHit.tag == triL.tag && hit)
+        if(ptr_to_tri_hit->tag == triL.tag && hit)
         {
             light_out = (BRDF*light_emitted*(object_normal.dot(dd))*(-1*light_normal.dot(dd))*tri_area)/
             (dd.length()*dd.length()*dd.length()*dd.length());

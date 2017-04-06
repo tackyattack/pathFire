@@ -29,7 +29,6 @@ bool bvhTree::rayTriangleIntersectMT(ray r, Tri3D tri, float &t, float &u, float
     */
     
     
-    
     vec3d v0v1 = v1 - v0;
     vec3d v0v2 = v2 - v0;
     
@@ -138,6 +137,13 @@ bool bvhTree::intersect(aabb box, ray r, float &tnear)
 }
 void bvhTree::walkBB(bvhNode &root, ray r, Tri3D *&trianlgeFound, float &tClose)
 { // reached a leaf
+    
+    ///////////////
+    /// We're currently only testing the head of the triangle list because
+    //  there's only one triangle per leaf. If the splitting algorithim changes,
+    //  we can then update this routine to also check multiple triangles if
+    //  the list has more than one triangle within it.
+    //////////////
 
     if(root.leftChild == NULL && root.rightChild == NULL && root.m_tri_cnt > 0)
     {

@@ -69,7 +69,7 @@ vec3d radiance(const ray &r, int depth, unsigned short *Xi, bool E=true){
     
     //----triangle version----
     float t2;
-    Tri3D triangle;
+    
 /*
     if(!tree->testRay(ray(vec3d(r.o.x,r.o.y,r.o.z),vec3d(r.d.x,r.d.y,r.d.z)), t2, triangle))
     {
@@ -77,7 +77,9 @@ vec3d radiance(const ray &r, int depth, unsigned short *Xi, bool E=true){
         return Vec(0,0,0);
     }
  */
-    if(!tree->newTest(r, t2, triangle))
+    Tri3D *ptr_to_triangle; // pointer to triangle that was intersected
+    
+    if(!tree->newTest(r, t2, ptr_to_triangle)) // test the ray
     {
         /*
         Vec w=r.o; // w is straight up and oriented with the surface normal
@@ -91,6 +93,9 @@ vec3d radiance(const ray &r, int depth, unsigned short *Xi, bool E=true){
         // to reduce noise, direct lighting routine is used to send more rays towards the bright spots
         return vec3d(0,0,0);
     }
+    
+    Tri3D &triangle = *ptr_to_triangle; // create a reference to the triangle that was intersected
+    
     float light_em = 0.75;
     if(triangle.tag == LIGHT_TAG)
     { // hit a light directly so make it visible
@@ -225,7 +230,6 @@ vec3d radiance(const ray &r, int depth, unsigned short *Xi, bool E=true){
         
         float t1 = 0.0;
         
-        Tri3D triHit;
         float light_out;
         vec3d dd = x_light_random - x;
         
@@ -250,8 +254,9 @@ vec3d radiance(const ray &r, int depth, unsigned short *Xi, bool E=true){
         BRDF = BRDFspec;
         //-------------------
 
-        
-        bool hit = tree->newTest(ray(x, dd), t1, triHit);
+        Tri3D *ptr_to_tri_hit; // points to the triangle that was hit
+        bool hit = tree->newTest(ray(x, dd), t1, ptr_to_tri_hit); // test the ray
+        Tri3D &triHit = *ptr_to_tri_hit; // create a reference to the triangle that was hit
 
         if(triHit.tag == triL.tag && hit)
         {

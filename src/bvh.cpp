@@ -136,7 +136,7 @@ bool bvhTree::intersect(aabb box, ray r, float &tnear)
     return true;
     
 }
-void bvhTree::walkBB(bvhNode &root, ray r, Tri3D &trianlgeFound, float &tClose)
+void bvhTree::walkBB(bvhNode &root, ray r, Tri3D *&trianlgeFound, float &tClose)
 { // reached a leaf
 
     if(root.leftChild == NULL && root.rightChild == NULL && root.m_tri_cnt > 0)
@@ -148,7 +148,7 @@ void bvhTree::walkBB(bvhNode &root, ray r, Tri3D &trianlgeFound, float &tClose)
         {
             tClose = t1;
             //trianlgeFound = root.m_tris[0];
-            trianlgeFound = *root.tri_list->head->tri;
+            trianlgeFound = root.tri_list->head->tri;
         }
         return;
     }
@@ -169,9 +169,9 @@ void bvhTree::walkBB(bvhNode &root, ray r, Tri3D &trianlgeFound, float &tClose)
     }
 }
 
-bool bvhTree::newTest(ray r, float &t, Tri3D &tri)
+bool bvhTree::newTest(ray r, float &t, Tri3D *&tri)
 {
-    Tri3D trianlgeHit;
+    Tri3D *trianlgeHit;
     float tNear = 1000000;
     walkBB(*this->root, r, trianlgeHit, tNear);
     if(tNear < 1000000)

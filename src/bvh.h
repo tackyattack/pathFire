@@ -226,8 +226,8 @@ public:
     void testIntersect(bvhNode &root, ray r, float t, rayList &list);
     bool rayTriangleIntersectMT(ray r, Tri3D tri, float &t, float &u, float &v);
     bool testRay(ray r, float &t, Tri3D &tri);
-    void walkBB(bvhNode &root, ray r, Tri3D &trianlgeFound, float &tClose);
-    bool newTest(ray r, float &t, Tri3D &tri);
+    void walkBB(bvhNode &root, ray r, Tri3D *&trianlgeFound, float &tClose);
+    bool newTest(ray r, float &t, Tri3D *&tri);
 private:
     void splitTree(bvhNode &root, int dp);
     int getLongestAxis(aabb aabb_in);

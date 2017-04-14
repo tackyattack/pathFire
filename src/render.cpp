@@ -399,7 +399,7 @@ void renderer::render(Tri3D tris[], int tris_cnt)
         tris[i].m_cz = tris[i].m_c.m_z;
     }
  
-    tree = new bvhTree(tris,tris_cnt);
+    tree = new bvhTree(tris,tris_cnt); // create new BVH tree with triangles
 
     int w=WIDTH, h=HEIGHT;
     int samps = 2; // samples per subpixel

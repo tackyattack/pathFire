@@ -246,7 +246,6 @@ bvhTree::bvhTree(Tri3D tris[], int tris_cnt)
         }
     }
     cout << "largest triangle: " << tag << endl;
-
     
     m_tris = tris; // tree has pointer record of the array of triangles
     

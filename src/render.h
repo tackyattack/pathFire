@@ -26,6 +26,8 @@ class renderer
 public:
     pixle pixles[PIXLE_CNT];
     void render(Tri3D tris[], int tris_cnt);
+private:
+    
 };
 
 #endif /* render_h */

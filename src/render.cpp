@@ -158,7 +158,7 @@ vec3d radiance(const ray &r, int depth, unsigned short *Xi, bool E=true){
     //EXPLICIT LIGHTING:
     //if (++depth>5||!p) if (erand48(Xi)<p) f=f*(1/p); else return obj.e*E;
     
-    
+    // Eventually this stuff will be pulled from the triangle pointer
     if (material_type == DIFF)
     {
         

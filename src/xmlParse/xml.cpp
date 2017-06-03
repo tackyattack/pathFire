@@ -11,8 +11,9 @@
 using namespace std;
 
 
-
 void xmlParse::parseFile(string file_path)
 {
     m_file_path = file_path;
+    xmlFile.open(file_path);
+    
 }

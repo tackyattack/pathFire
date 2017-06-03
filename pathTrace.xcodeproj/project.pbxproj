@@ -61,6 +61,7 @@
 		029971161E08D1F500F0BC08 /* render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = "<group>"; };
 		02D6DEB91E24028E00800F36 /* material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = material.cpp; sourceTree = "<group>"; };
 		02D6DEBB1E24029B00800F36 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
+		02F2FBF91EE3090A002F9CAD /* xmlParse */ = {isa = PBXFileReference; lastKnownFileType = folder; path = xmlParse; sourceTree = "<group>"; };
 		02FDDF671E638A94006232B2 /* pathFire.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pathFire.cpp; sourceTree = "<group>"; };
 		02FDDF691E638AAE006232B2 /* pathFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pathFire.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -125,6 +126,7 @@
 			children = (
 				02FDDF691E638AAE006232B2 /* pathFire.h */,
 				02FDDF671E638A94006232B2 /* pathFire.cpp */,
+				02F2FBF91EE3090A002F9CAD /* xmlParse */,
 				022CA3241E68B7FD00BA1408 /* scene.h */,
 				022CA3221E68B7F300BA1408 /* scene.cpp */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,

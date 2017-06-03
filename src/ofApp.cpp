@@ -17,6 +17,10 @@
 #include <fstream>
 #include <iostream>
 
+// testing includes
+#include "xml.h"
+//----------------
+
 const string OBJ_FILE = "/Users/henrybergin/Documents/of_v0.9.8_osx_release/apps/myApps/pathTrace/objects/sphere_light.obj";
 // NOTE: you have to make sure OBJ file doesn't have extra return at end
 
@@ -81,6 +85,14 @@ ofEasyCam cam; // add mouse controls for camera movement
 renderer rend;
 
 void ofApp::setup(){
+    
+    
+    // app entry point
+    // testing goes here
+    //--------------
+    
+    //--------------
+    
     ofBackground(0,0,0);
     ofSetVerticalSync(true);
     

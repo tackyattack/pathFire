@@ -18,9 +18,12 @@ class xmlParse
 public:
     void parseFile(string file_path);
 private:
+    void buildXMLTree();
+    
     string m_file_path;
     xmlNode *head;
     ifstream xmlFile;
+    streampos currentPosition;
 };
 
 #endif /* xml_h */

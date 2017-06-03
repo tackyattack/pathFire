@@ -10,14 +10,20 @@
 #define xmlNode_h
 
 #include <iostream>
+#include "list/list.h"
 
 using namespace std;
 
 struct xmlNode
 {
     string tag;
-    unsigned int file_position;
-    xmlNode *child;
+    unsigned long file_position;
+    //xmlNode *child;
+    glist<xmlNode> children;
+    xmlNode *parent;
+    xmlNode *list_next;
+    xmlNode *tree_next;
+    
 };
 
 #endif /* xmlNode_h */

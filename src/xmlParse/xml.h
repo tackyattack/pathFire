@@ -17,6 +17,13 @@ class xmlParse
 {
 public:
     void parseFile(string file_path);
+    void connectParent(xmlNode *parent, bool isHead);
+    void recursiveConnect(xmlNode *currentNode);
+    void connectTree(xmlNode *currentNode);
+    void connectLevel(xmlNode *parent);
+    void setTagName(xmlNode *node);
+    string getTagName(unsigned long openStart);
+    unsigned long getNextTag(xmlNode *node);
 private:
     void buildXMLTree();
     

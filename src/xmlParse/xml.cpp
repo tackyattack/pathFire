@@ -115,7 +115,8 @@ void xmlParse::setTagName(xmlNode *node)
 {
     
     unsigned long startingPos = xmlFile.tellg();
-    node->tag = getTagName(startingPos);
+    node->tag = getTagName(node->file_position);
+    xmlFile.seekg(startingPos);
 }
 
 string xmlParse::getTagName(unsigned long openStart)
@@ -205,6 +206,7 @@ void xmlParse::connectLevel(xmlNode *parent)
                     tagAdded = true;
                     newNode = new xmlNode;
                     newNode->file_position = ts;
+                    setTagName(newNode);
                     if(currentNode != parent)
                     {
                         currentNode->list_next = newNode; // only the children themselves are connect to each other
@@ -241,24 +243,27 @@ void xmlParse::recursiveConnect(xmlNode *currentNode)
     connectParent(currentNode, false);
 }
 
-void xmlParse::connectTree(xmlNode *currentNode)
+void xmlParse::connectTree(oQueue<xmlNode> *treeQueue)
 {
-    char input;
+    xmlNode *poppedNode;
+    xmlNode *currentNode;
     
-    xmlFile.seekg(currentNode->file_position);
-    
-    while( input != '<')
-    { // find immediate next open tag
-        xmlFile >> input;
-        if(xmlFile.peek() == '/') xmlFile >> input;
+    while(treeQueue->oCount() > 0)
+    {
+        poppedNode = treeQueue->oPop();
+        cout << "popping: " << getTagName(poppedNode->file_position) << endl;
+        connectLevel(poppedNode);
+        if(poppedNode->tree_next != NULL)
+        {
+            currentNode = poppedNode->tree_next;
+            while(currentNode != NULL)
+            { // push all of the children of this root node
+                treeQueue->oPush(currentNode);
+                cout << "pushing: " << getTagName(currentNode->file_position) << endl;
+                currentNode = currentNode->list_next;
+            }
+        }
     }
-    
-        
-    xmlNode *newNode = new xmlNode;
-    newNode->file_position = xmlFile.tellg();
-    currentNode->tree_next = newNode;
-        
-    
 }
 
 void xmlParse::buildXMLTree()
@@ -276,12 +281,39 @@ void xmlParse::buildXMLTree()
     // connect head, then recurse down tree lists to connect
     
     connectLevel(head);
-    connectLevel(head->tree_next);
-    connectLevel(head->tree_next->list_next); // this is what recursion should do -- go down lists for each tree
+    //connectLevel(head->tree_next);
+    //connectLevel(head->tree_next->list_next); // this is what recursion should do -- go down lists for each tree
     
     
     //connectLevel(head->list_next->list_next);
+    
+    oQueue<xmlNode> buildQueue;
+    buildQueue.oPush(head->tree_next);
+    buildQueue.oPush(head->tree_next->list_next);
+    buildQueue.oPush(head->tree_next->list_next->list_next);
+    
+    connectTree(&buildQueue);
+    
     while(1);
+    
+    //------
+    // queue testing
+    oQueue<xmlNode> tq;
+    xmlNode *testNode1;
+    xmlNode *testNode2;
+    xmlNode *poppedNode;
+    
+    testNode1->file_position = 10;
+    testNode2->file_position = 11;
+    
+    tq.oPush(testNode1);
+    tq.oPush(testNode2);
+    
+    poppedNode = tq.oPop();
+    poppedNode = tq.oPop();
+    //------
+    
+    
     
     
     //connectParent(head, false);

@@ -12,6 +12,7 @@
 #include <iostream>
 #include <fstream>
 #include "xmlNode.h"
+#include "queue.h"
 
 class xmlParse
 {
@@ -19,7 +20,7 @@ public:
     void parseFile(string file_path);
     void connectParent(xmlNode *parent, bool isHead);
     void recursiveConnect(xmlNode *currentNode);
-    void connectTree(xmlNode *currentNode);
+    void connectTree(oQueue<xmlNode> *treeQueue);
     void connectLevel(xmlNode *parent);
     void setTagName(xmlNode *node);
     string getTagName(unsigned long openStart);

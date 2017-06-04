@@ -16,10 +16,10 @@ using namespace std;
 struct xmlNode
 {
     string tag;
-    unsigned long file_position;
-    xmlNode *parent;
-    xmlNode *list_next;
-    xmlNode *tree_next;
+    unsigned long file_position = 0;
+    xmlNode *parent = NULL;
+    xmlNode *list_next = NULL;
+    xmlNode *tree_next = NULL;
     
 };
 

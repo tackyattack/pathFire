@@ -55,8 +55,13 @@
 // think of list next (-->) as a pointer used to list all the tags of that level
 //
 // this is useful because you can look through all tag's of a level, then find the one you're looking for,
-// go into it, and explore its tags, etc, etc. 
-//
+// go into it, and explore its tags, etc, etc.
+// This opens up a number of search methods. You could use the queue as used in contruction
+// to search through all the nodes to find which tags you're looking for (and maybe) have the search
+// function return another pointer based list that contains all the tags found. And once you have your tags,
+
+// todo: try re-coding and see if you can use above to simplify some stuff
+// todo: add a data gather function that takes a tag and parses the data within it
 
 #include "xml.h"
 

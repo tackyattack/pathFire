@@ -2,8 +2,60 @@
 //  xml.cpp
 //  pathTrace
 //
-//  Created by HENRY BERGIN on 6/3/17.
+// Created by HENRY BERGIN on 6/3/17.
 //
+// How to use a queue to connect tree:
+//
+// node 1 has children of node 2 and node 3
+// node 2 has children of node 4, node 5, node 6
+// node 3 has children of node 7, node 8, node 9
+//
+// (1) ++> (2)-->(4)-->(5)-->(6)
+//
+// 1 ++> 2-->3
+// 2 ++> 4-->5-->6
+//
+// node pointers:
+// --> : list for children
+// ++> : tree pointer
+//
+//
+// pop (1) pushes children nodes (2), (3) into queue
+// ----------------
+// 1
+// ----------------
+//
+// 1 ++> 2
+// 1 ++> 3
+// ----------------
+// (2) (3)
+// ----------------
+//
+// pop (2) pushes children nodes (4), (5), (6) into queue (found from 2's list (i.e. the children list))
+// ----------------
+// (3) (4)-->(5)-->(6)
+// ----------------
+//
+// pop (3) pushes children nodes (7), (8), (9)
+// ----------------
+// (4)-->(5)-->(6) (7)-->(8)-->(9)
+// ----------------
+
+// As you can see, it's a level exploration. It's easy to first go through the file
+// and find the open tags. These will connect to each other via the tree ++> pointer.
+// <a>
+//   <b1></b1>
+//   <b2></b2>
+// </a>
+//
+// so (a)'s tree next (++>) would be (b1) because that's on the next level and it's the first we found of that level
+// then (b1)'s list next (-->) would be (b2) because that's the next tag on this current level
+//
+// think of tree next (++>) as the entry pointer to the next level
+// think of list next (-->) as a pointer used to list all the tags of that level
+//
+// this is useful because you can look through all tag's of a level, then find the one you're looking for,
+// go into it, and explore its tags, etc, etc. 
 //
 
 #include "xml.h"
@@ -17,98 +69,6 @@ void xmlParse::parseFile(string file_path)
     xmlFile.open(file_path);
     
     buildXMLTree();
-}
-
-void xmlParse::connectParent(xmlNode *parent, bool isHead)
-{
-    
-    xmlNode *newNode;
-    
-    unsigned int refCount = 0;
-    bool headFilled = false;
-    
-    if(isHead)
-    {
-      head = new xmlNode;
-    }
-    
-    xmlNode *currentNode = head;
-    xmlNode *parentNode = head;
-    
-    
-    if(!isHead)
-    {
-        currentNode = parent;
-        parentNode  = parent;
-        headFilled = true;
-    }
-    
-    xmlFile.seekg(parent->file_position);
-    
-    refCount = 0; // reset reference count
-    char input;
-    do
-    {
-        // go through first level
-        
-        xmlFile >> input;
-        //cout << input;
-        
-        if(input == '<')
-        { // tag detected
-            // ignore other tags on next level (i.e. not 0 ref count)
-            xmlFile >> input;
-            if(input == '/')
-            {
-                refCount--;
-                cout << "close tag" << endl;
-            }
-            else
-            {
-                refCount++;
-                cout << "open tag" << endl;
-            }
-            cout << "ref count: " << refCount << endl;
-            
-            if(refCount == 1)
-            {
-                cout << "open on current level" << endl;
-                cout << xmlFile.tellg() << endl;
-                if(!headFilled)
-                {
-                    head->file_position = xmlFile.tellg();
-                    currentNode->parent = parentNode;
-                    currentNode = head;
-                    headFilled = true;
-                }
-                else
-                {
-                    newNode = new xmlNode;
-                    newNode->file_position = xmlFile.tellg();
-                    newNode->parent = parentNode;
-                    currentNode->list_next = newNode;
-                    currentNode = currentNode->list_next;
-                }
-            }
-            /*
-            xmlFile >> input;
-            if(input == '/')
-            {
-                refCount--;
-                cout << "close tag" << endl;
-            }
-            else
-            {
-                refCount++;
-                cout << "open tag" << endl;
-            }
-            cout << "ref count: " << refCount << endl;
-             */
-            
-        }
-        
-        
-    }while(refCount > 0 || (!xmlFile.eof()) );
 }
 
 void xmlParse::setTagName(xmlNode *node)
@@ -235,12 +195,6 @@ void xmlParse::connectLevel(xmlNode *parent)
     
     cout << "--------------------" << endl;
     
-}
-
-
-void xmlParse::recursiveConnect(xmlNode *currentNode)
-{
-    connectParent(currentNode, false);
 }
 
 void xmlParse::connectTree(oQueue<xmlNode> *treeQueue)

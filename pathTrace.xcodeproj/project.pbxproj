@@ -13,6 +13,7 @@
 		029971131E08CA3500F0BC08 /* 3dTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 029971121E08CA3500F0BC08 /* 3dTypes.cpp */; };
 		029971151E08D1E900F0BC08 /* render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 029971141E08D1E900F0BC08 /* render.cpp */; };
 		02D6DEBA1E24028E00800F36 /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02D6DEB91E24028E00800F36 /* material.cpp */; };
+		02F2FC081EE31383002F9CAD /* xml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02F2FC051EE31383002F9CAD /* xml.cpp */; };
 		02FDDF681E638A94006232B2 /* pathFire.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02FDDF671E638A94006232B2 /* pathFire.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
@@ -59,9 +60,13 @@
 		029971121E08CA3500F0BC08 /* 3dTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 3dTypes.cpp; sourceTree = "<group>"; };
 		029971141E08D1E900F0BC08 /* render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = render.cpp; sourceTree = "<group>"; };
 		029971161E08D1F500F0BC08 /* render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = "<group>"; };
+		02A4893F1EE48A7F00A02CB5 /* queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = queue.h; path = queue/queue.h; sourceTree = "<group>"; };
 		02D6DEB91E24028E00800F36 /* material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = material.cpp; sourceTree = "<group>"; };
 		02D6DEBB1E24029B00800F36 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
-		02F2FBF91EE3090A002F9CAD /* xmlParse */ = {isa = PBXFileReference; lastKnownFileType = folder; path = xmlParse; sourceTree = "<group>"; };
+		02F2FC051EE31383002F9CAD /* xml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xml.cpp; path = xmlParse/xml.cpp; sourceTree = "<group>"; };
+		02F2FC061EE31383002F9CAD /* xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xml.h; path = xmlParse/xml.h; sourceTree = "<group>"; };
+		02F2FC071EE31383002F9CAD /* xmlNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmlNode.h; path = xmlParse/xmlNode.h; sourceTree = "<group>"; };
+		02F2FC0F1EE33B55002F9CAD /* list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = list.h; path = list/list.h; sourceTree = "<group>"; };
 		02FDDF671E638A94006232B2 /* pathFire.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pathFire.cpp; sourceTree = "<group>"; };
 		02FDDF691E638AAE006232B2 /* pathFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pathFire.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -86,6 +91,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02A489401EE48A8600A02CB5 /* queue */ = {
+			isa = PBXGroup;
+			children = (
+				02A4893F1EE48A7F00A02CB5 /* queue.h */,
+			);
+			name = queue;
+			sourceTree = "<group>";
+		};
+		02F2FC091EE313AA002F9CAD /* xmlParse */ = {
+			isa = PBXGroup;
+			children = (
+				02F2FC051EE31383002F9CAD /* xml.cpp */,
+				02F2FC061EE31383002F9CAD /* xml.h */,
+				02F2FC071EE31383002F9CAD /* xmlNode.h */,
+			);
+			name = xmlParse;
+			sourceTree = "<group>";
+		};
+		02F2FC0E1EE33B44002F9CAD /* list */ = {
+			isa = PBXGroup;
+			children = (
+				02F2FC0F1EE33B55002F9CAD /* list.h */,
+			);
+			name = list;
+			sourceTree = "<group>";
+		};
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,9 +155,11 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				02A489401EE48A8600A02CB5 /* queue */,
+				02F2FC0E1EE33B44002F9CAD /* list */,
+				02F2FC091EE313AA002F9CAD /* xmlParse */,
 				02FDDF691E638AAE006232B2 /* pathFire.h */,
 				02FDDF671E638A94006232B2 /* pathFire.cpp */,
-				02F2FBF91EE3090A002F9CAD /* xmlParse */,
 				022CA3241E68B7FD00BA1408 /* scene.h */,
 				022CA3221E68B7F300BA1408 /* scene.cpp */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
@@ -251,6 +284,7 @@
 				029971151E08D1E900F0BC08 /* render.cpp in Sources */,
 				029971131E08CA3500F0BC08 /* 3dTypes.cpp in Sources */,
 				0299710C1E08C92200F0BC08 /* obj.cpp in Sources */,
+				02F2FC081EE31383002F9CAD /* xml.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,33 @@
+File will be created with just the bare bones — objects with material and its triangles. It would be best to make your own XML parser since it’s simple and would eliminate need for dependencies.
+
+structure:
+
+++++
+objects (contains links to material names and meshes)
+++++
+
+++++
+materials
+++++
+
+*****format*****
+
+<object>
+  <material>material_name</material>
+  <mesh>filename_with_triangles_.mesh</mesh>
+</object>
+
+…
+
+
+<material>
+  <name>material_name</name>
+  <shader>diffuse</shader>
+  <UV>null</UV> <— uv map link could go here
+  <color>
+    <red>223</red>
+    <green>20</green>
+    <blue>150</blue>
+  </color>
+</material>
+

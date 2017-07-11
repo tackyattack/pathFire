@@ -1,0 +1,14 @@
+<scene>
+  <object>
+    <mesh>X</mesh>
+    <mesh>Y</mesh>
+  </object>
+  <object>
+    <mesh>X</mesh>
+    <mesh>Y</mesh>
+  </object>
+  <object>
+      <mesh>X</mesh>
+      <mesh>Y</mesh>
+  </object>
+</scene>

@@ -18,7 +18,8 @@
 #include <iostream>
 
 // testing includes
-#include "xml.h"
+//----------------
+#include "xmlParse/xml.h"
 //----------------
 
 const string OBJ_FILE = "/Users/henrybergin/Documents/of_v0.9.8_osx_release/apps/myApps/pathTrace/objects/sphere_light.obj";
@@ -90,7 +91,9 @@ void ofApp::setup(){
     // app entry point
     // testing goes here
     //--------------
-    
+    xmlParse parser;
+    parser.parseFile("/Users/henrybergin/Documents/of_v0.9.8_osx_release/apps/myApps/pathTrace/3DFileCreator/exampleScene.xml");
+    while(1);
     //--------------
     
     ofBackground(0,0,0);
